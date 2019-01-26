@@ -28,6 +28,8 @@ public class Player extends BorderPane {
 
         setBottom(bar);
 
+        setStyle("-fx-background-color: #bfc2c7");
+
         player.play();
     }
 }
