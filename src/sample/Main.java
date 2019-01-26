@@ -15,7 +15,7 @@ public class Main extends Application {
         MenuItem open = new MenuItem("Open");
         Menu file = new Menu("File");
         MenuBar menu = new MenuBar();
-        
+
         Player player = new Player("file:///Users/kareemjames/Downloads/videoplayback.mp4");
         Scene scene = new Scene(player, 720, 535, Color.BLACK);
         primaryStage.setScene(scene);
