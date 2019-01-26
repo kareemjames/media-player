@@ -75,6 +75,16 @@ public class MediaBar extends HBox {
             }
         });
 
+        // Make video update using slider
+        time.valueProperty().addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                if(time.isPressed()) {
+                    player.seek(player.getMedia().getDuration().multiply(time.getValue()/100));
+                }
+            }
+        });
+
     }
 
         // Updates the slider
