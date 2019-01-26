@@ -1,5 +1,8 @@
 package sample;
 
+import javafx.animation.Animation;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -38,6 +41,27 @@ public class MediaBar extends HBox {
         getChildren().add(time);
         getChildren().add(volume);
         getChildren().add(vol);
+
+        playButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MediaPlayer.Status status = player.getStatus();
+
+                if(status == MediaPlayer.Status.PLAYING) {
+                    if(player.getCurrentTime().greaterThanOrEqualTo(player.getTotalDuration())) {
+                        player.seek(player.getStartTime());
+                        player.play();
+                    } else {
+                        player.pause();
+                        playButton.setText(">");
+                    }
+                }
+                if(status == MediaPlayer.Status.PAUSED || status == MediaPlayer.Status.HALTED || status == MediaPlayer.Status.STOPPED) {
+                    player.play();
+                    playButton.setText("||");
+                }
+            }
+        });
 
     }
 }
