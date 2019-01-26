@@ -85,6 +85,16 @@ public class MediaBar extends HBox {
             }
         });
 
+        // Controls volume slider
+        vol.valueProperty().addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                if(vol.isPressed()) {
+                    player.setVolume(vol.getValue()/100);
+                }
+            }
+        });
+
     }
 
         // Updates the slider
